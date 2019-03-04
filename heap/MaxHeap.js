@@ -30,7 +30,6 @@ const shiftDown = (data,n) => {
 }
 
 const shiftUp = (data,n) => {
-  console.log(n)
   while(n>0) {
     const current = n,
       parent = Math.floor((n-1)/2)
