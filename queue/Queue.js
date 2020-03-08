@@ -8,6 +8,15 @@ function Queue() {
   // this.empty = empty;
 }
 
+// api 
+/**
+ * api: enqueue
+ * dequeue
+ * front
+ * back
+ * isEmpty
+ */
+
 Queue.prototype.enqueue =function(item) {
   this.dataStore.push(item)
 }
@@ -37,5 +46,3 @@ Queue.prototype.toString = function() {
 }
 
 module.exports = Queue
-
-let queue = new Queue()

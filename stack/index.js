@@ -25,5 +25,4 @@ stack.prototype.print = function(){
   return this.items.toString()
 }
 
-
 module.exports = stack
