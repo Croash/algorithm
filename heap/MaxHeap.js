@@ -44,12 +44,14 @@ const shiftUp = (data,n) => {
 }
 
 MaxHeap.prototype.init = function() {
+  // 由下至上 下沉节点，当下层节点拍好顺序，上层节点直接下沉，结果即为符合最大堆顺序的
   for(let i=Math.floor(this.heapArr.length/2)-1;i>=0;i--) {
     shiftDown(this.heapArr,i)
   }
 }
 
 MaxHeap.prototype.extractMax = function() {
+  // 顶和底对换，然后pop之前的顶（当前底）；然后下沉当前的顶，即为最新的最大堆
   if(this.heapArr.length<=0) {
     return null
   }
