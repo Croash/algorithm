@@ -1,4 +1,4 @@
-function MaxHeap(arr) {
+function MinHeap(arr) {
   const data = arr || []
   this.heapArr = [...data]
 }
@@ -15,11 +15,11 @@ const shiftDown = (data,n) => {
     const current = n,
       left = 2*n+1,
       right = 2*n+2
-    const max = Math.max(data[current],data[left],data[right])
-    if(max===data[left]) {
+    const min = Math.min(data[current],data[left],data[right])
+    if(min===data[left]) {
       swapArr(data,current,left)
       n = left
-    } else if(max===data[right]) {
+    } else if(min===data[right]) {
       swapArr(data,current,right)
       n = right
     }
@@ -33,8 +33,8 @@ const shiftUp = (data,n) => {
   while(n>0) {
     const current = n,
       parent = Math.floor((n-1)/2)
-    const min = Math.min(data[current],data[parent])
-    if(min==data[parent]) {
+    const max = Math.max(data[current],data[parent])
+    if(max==data[parent]) {
       swapArr(data,current,parent)
       n = parent
     } else {
@@ -43,14 +43,22 @@ const shiftUp = (data,n) => {
   }
 }
 
-MaxHeap.prototype.init = function() {
+MinHeap.prototype.init = function() {
   // 由下至上 下沉节点，当下层节点拍好顺序，上层节点直接下沉，结果即为符合最大堆顺序的
   for(let i=Math.floor(this.heapArr.length/2)-1;i>=0;i--) {
     shiftDown(this.heapArr,i)
   }
 }
 
-MaxHeap.prototype.pop = function() {
+MinHeap.prototype.size = function() {
+  return this.heapArr.length
+}
+
+MinHeap.prototype.top = function() {
+  return this.heapArr.length >0 ? this.heapArr[0] : null
+}
+
+MinHeap.prototype.extractmin = function() {
   // 顶和底对换，然后pop之前的顶（当前底）；然后下沉当前的顶，即为最新的最大堆
   if(this.heapArr.length<=0) {
     return null
@@ -61,20 +69,9 @@ MaxHeap.prototype.pop = function() {
   return res
 }
 
-MaxHeap.prototype.insert = function(num) {
+MinHeap.prototype.insert = function(num) {
   this.heapArr.push(num)
   shiftUp(this.heapArr,this.heapArr.length-1)
 }
 
-MaxHeap.prototype.update = function(num, index) {
-  if(index < this.heapArr.length) {
-    this.heapArr[index] = num
-    shiftUp(this.heapArr, index)
-    shiftDown(this.heapArr, index)  
-  } else {
-    return 'out of length'
-  }
-  
-}
-
-module.exports = MaxHeap
+module.exports = MinHeap

@@ -5,14 +5,17 @@ const heap = new MaxHeap(arr)
 heap.init()
 
 heap.insert(2222)
+console.log(heap.heapArr)
+heap.update(9996, 6)
+// const sortArr = []
 
-const sortArr = []
+// while(heap.heapArr.length>0) {
+//   const res = heap.pop()
+//   sortArr.push(res)
+// }
 
-while(heap.heapArr.length>0) {
-  const res = heap.extractMax()
-  sortArr.push(res)
-}
 
-console.log(sortArr)
+
+console.log(heap.heapArr)
 
 console.log('明白了，自己实现一个好了')
